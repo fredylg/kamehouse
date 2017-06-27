@@ -29,3 +29,7 @@ Route::get('/light/setLightValue/{id}/{status}', function (Request $request , $i
     $s = new LightsController();
     return $s->setLightValue($request,$id,$status);
 });
+Route::get('/light/getLightValue/{id}', function (Request $request , $id ) {
+    $s = new LightsController();
+    return $s->getLightValue($request,$id);
+});

@@ -29,6 +29,10 @@ class LightsController extends Controller
       Log::info( ' Set value '.$value . ' |||| ' . print_r( $r->all() , true ) .print_r( $r->headers , true ) );
       return $res ? 1:0;
     }
+    public function getLightValue( $r , $id ){
+      $light = \App\LightsModel::find($id)->toArray();
+      return $light['value'];
+    }
 
 
 }
