@@ -18,7 +18,6 @@ class LightsController extends Controller
       $light = \App\LightsModel::find($id);
       $light->status = (bool)$status;
       $res =  $light->save();
-      Log::info(' Set status '.print_r( $r->all() , true ).'-------'.print_r( $r->headers , true )  );
       return $res ? 1:0;
     }
 
@@ -26,7 +25,6 @@ class LightsController extends Controller
       $light = \App\LightsModel::find($id);
       $light->value = $value;
       $res =  $light->save();
-      Log::info( ' Set value '.$value . ' |||| ' . print_r( $r->all() , true ) .print_r( $r->headers , true ) );
       return $res ? 1:0;
     }
     public function getLightValue( $r , $id ){
