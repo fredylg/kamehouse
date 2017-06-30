@@ -17,19 +17,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/light/getStatus/{id}', function (Request $request , $id) {
-    $s = new LightsController();
-    return $s->getLightStatus($id);
+    $s = new LightsController($id);
+    return $s->getLightStatus();
 });
 
 Route::get('/light/setStatus/{id}/{status}', function (Request $request , $id ,$status) {
-    $s = new LightsController();
-    return $s->setLightStatus($request,$id,$status);
+    $s = new LightsController($id);
+    return $s->setLightStatus($status);
 });
 Route::get('/light/setLightValue/{id}/{status}', function (Request $request , $id ,$status) {
-    $s = new LightsController();
-    return $s->setLightValue($request,$id,$status);
+    $s = new LightsController($id);
+    return $s->setLightValue($status);
 });
 Route::get('/light/getLightValue/{id}', function (Request $request , $id ) {
-    $s = new LightsController();
-    return $s->getLightValue($request,$id);
+    $s = new LightsController($id);
+    return $s->getLightValue();
 });

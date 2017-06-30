@@ -8,39 +8,62 @@ use Log;
 
 class LightsController extends Controller
 {
-    private $sonoff_url;
-    //
-    public function getLightStatus( $id ){
-      $light = \App\LightsModel::find($id)->toArray();
-      return $light['status'];
+    private $light;
+
+    public function __construct($id){
+        $this->lamp_id = $id;
+        $this->light = \App\LightsModel::find($this->lamp_id);
     }
 
-    public function setLightStatus( $r , $id , $status ){
-      $current_status = $this->getLightStatus( $id );
-      if($current_status != $status && $id == 1 ){
-          $this->toggleSonOffStatus( 'http://192.168.0.15/ay?o=1' );
-      }
-      $light = \App\LightsModel::find($id);
-      $light->status = (bool)$status;
-      $res =  $light->save();
-
-      return $res ? 1:0;
+    public function getLightStatus(){
+        $status = $this->getLightStatusSonOff();
+        if( $status !=  $this->light['status'] ){
+            $this->setLightStatusDB( $status );
+        }
+        return $status;
     }
 
-    public function setLightValue( $r , $id , $value ){
+    public function setLightStatus( $status ){
+      $this->setLightStatusSonOff( $status );
+      $res = $this->setLightStatusDB( $status );
+      return $res;
+    }
+
+    public function setLightValue( $value ){
       $light = \App\LightsModel::find($id);
       $light->value = $value;
       $res =  $light->save();
       return $res ? 1:0;
     }
-    public function getLightValue( $r , $id ){
+
+    public function getLightValue( ){
       $light = \App\LightsModel::find($id)->toArray();
       return $light['value'];
     }
 
-    private function toggleSonOffStatus( $sonoff_url ){
-        file_get_contents($sonoff_url);
-        return true;
+    private function getLightStatusSonOff( ){
+      $on = substr(trim(file_get_contents('http://'.$this->light['ip'].'/cm?cmnd=Power')),-2);
+      if( $on == 'ON'){
+        return 1;
+      }else{
+        return 0;
+      }
+    }
+
+    private function setLightStatusSonOff( $status ){
+      $on = substr(trim(file_get_contents('http://'.$this->light['ip'].'/cm?cmnd=Power%20' . $status )),-2);
+      if( $on == 'on'){
+        return 1;
+      }else{
+        return 0;
+      }
+    }
+
+    private function setLightStatusDB( $status ){
+      $light = \App\LightsModel::find( $this->lamp_id );
+      $light->status = (bool)$status;
+      $res =  $light->save();
+      return $res ? 1:0;
     }
 
 

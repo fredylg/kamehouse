@@ -17,6 +17,7 @@ class LightsTable extends Migration
         Schema::create('lights', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name');
+          $table->string('ip');
           $table->boolean('status');
           $table->integer('value');
           $table->timestamps();
