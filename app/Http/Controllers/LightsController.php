@@ -17,7 +17,7 @@ class LightsController extends Controller
 
     public function setLightStatus( $r , $id , $status ){
       $current_status = $this->getLightStatus( $id );
-      if($current_status != $status){
+      if($current_status != $status && $id == 1 ){
           $this->toggleSonOffStatus( 'http://192.168.0.15/ay?o=1' );
       }
       $light = \App\LightsModel::find($id);
