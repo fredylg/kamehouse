@@ -26,11 +26,11 @@ class LightsController extends Controller
         // return $status;
         //dd($this->light['status']);
 
-        $value_cached = Cache::pull($this->lamp_id.'_value');
-        if( $value_cached == null ){
-          $expiresAt = Carbon::now()->addSeconds(150);
+        $value_cached = Cache::get($this->lamp_id.'_value');
+        if ($value_cached == null) {
+          $expiresAt = Carbon::now()->addSeconds(10);
           Cache::put( $this->lamp_id.'_value', $this->light['status'] , $expiresAt);
-          $status = $this->light['status'].'dd';
+          $status = $this->light['status'];
         }else{
           $status = $value_cached;
         }
