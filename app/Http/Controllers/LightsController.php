@@ -19,22 +19,27 @@ class LightsController extends Controller
 
     public function getLightStatus(){
        // this kill the microcontroller
-        $status = $this->getLightStatusSonOff();
-        if( $status !=  $this->light['status'] ){
-            $this->setLightStatusDB( $status );
-        }
-        return $status;
+        // $status = $this->getLightStatusSonOff();
+        // if( $status !=  $this->light['status'] ){
+        //     $this->setLightStatusDB( $status );
+        // }
+        // return $status;
         //dd($this->light['status']);
 
-        // $value_cached = Cache::get($this->lamp_id.'_value');
-        // if ($value_cached == null) {
-        //   $expiresAt = Carbon::now()->addSeconds(10);
-        //   Cache::put( $this->lamp_id.'_value', $this->light['status'] , $expiresAt);
-        //   $status = $this->light['status'];
-        // }else{
-        //   $status = $value_cached;
-        // }
-        // return $status ;
+        $value_cached = Cache::get($this->lamp_id.'_value');
+        if ($value_cached == null) {
+          $expiresAt = Carbon::now()->addSeconds(30);
+          Cache::put( $this->lamp_id.'_value', $this->light['status'] , $expiresAt);
+          $status = $this->light['status'];
+        }else{
+          $status = $value_cached;
+        }
+        return $status ;
+
+
+
+
+
     }
 
     public function setLightStatus( $status ){
