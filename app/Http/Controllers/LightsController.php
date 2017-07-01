@@ -16,11 +16,13 @@ class LightsController extends Controller
     }
 
     public function getLightStatus(){
-        $status = $this->getLightStatusSonOff();
-        if( $status !=  $this->light['status'] ){
-            $this->setLightStatusDB( $status );
-        }
-        return $status;
+       // this kill the microcontroller
+        // $status = $this->getLightStatusSonOff();
+        // if( $status !=  $this->light['status'] ){
+        //     $this->setLightStatusDB( $status );
+        // }
+        // return $status;
+        return $this->light['status'];
     }
 
     public function setLightStatus( $status ){
