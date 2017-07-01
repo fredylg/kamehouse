@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 use App;
 use Log;
 
@@ -22,7 +24,17 @@ class LightsController extends Controller
         //     $this->setLightStatusDB( $status );
         // }
         // return $status;
-        return $this->light['status'];
+        //dd($this->light['status']);
+
+        $value_cached = Cache::pull($this->lamp_id.'_value');
+        if( $value_cached == null ){
+          $expiresAt = Carbon::now()->addSeconds(150);
+          Cache::put( $this->lamp_id.'_value', $this->light['status'] , $expiresAt);
+          $status = $this->light['status'].'dd';
+        }else{
+          $status = $value_cached;
+        }
+        return $status ;
     }
 
     public function setLightStatus( $status ){
