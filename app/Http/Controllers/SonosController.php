@@ -44,5 +44,18 @@ class SonosController extends Controller
      return $res;
     }
 
+    public function fakeIt( $val = 0 ){
+      if($val == 0 ){
+        return  $this->pause();
+      }
+      $percentage = $this->linearEquation( $val );
+      $res =   file_get_contents($this->server . '/' . $this->zone . '/volume/' . $this->volumenRate );
+      return $res;
+    }
+
+    private function linearEquation( $val ){
+      return 0.666 * $val + 3.34;
+    }
+
 
 }

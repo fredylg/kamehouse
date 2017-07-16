@@ -68,3 +68,8 @@ Route::get('/sonos/previous', function (Request $request ) {
     $s = new SonosController();
     return $s->volumeDown();
 });
+
+Route::get('/sonos/fakeIt/{val}', function (Request $request , $val) {
+    $s = new SonosController();
+    return $s->fakeIt( $val );
+});
