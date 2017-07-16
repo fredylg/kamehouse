@@ -69,7 +69,22 @@ Route::get('/sonos/previous', function (Request $request ) {
     return $s->volumeDown();
 });
 
-Route::get('/sonos/fakeIt/{val}', function (Request $request , $val) {
+Route::get('/sonos/setfakevolumen/{val}', function (Request $request , $val) {
     $s = new SonosController();
-    return $s->fakeIt( $val );
+    return $s->setFakeVolumen( $val );
+});
+
+Route::get('/sonos/getfakevolumen', function (Request $request ) {
+    $s = new SonosController();
+    return $s->getFakeVolumen(  );
+});
+
+Route::get('/sonos/getvolumen', function (Request $request ) {
+    $s = new SonosController();
+    return $s->getVolumen(  );
+});
+
+Route::get('/sonos/getfakestatus', function (Request $request ) {
+    $s = new SonosController();
+    return $s->getFakeStatus();
 });
