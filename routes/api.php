@@ -105,9 +105,9 @@ Route::get('/tv/volumeup', function (Request $request ) {
     return $s->volumeUp();
 });
 
-Route::get('/tv/volumedown', function (Request $request ) {
+Route::get('/tv/setvolumendown', function (Request $request , $val) {
     $s = new TvController();
-    return $s->volumeDown();
+    return $s->setVolumenDown($val);
 });
 Route::get('/tv/setvolumenup/{val}', function (Request $request , $val) {
     $s = new TvController();
