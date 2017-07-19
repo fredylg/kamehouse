@@ -11,10 +11,10 @@ class TvController extends Controller
      //turn tv on
      exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes POWER');
      // wait for 8 seconds
-     usleep(8500000);
+     usleep(5000000);
      // set volumen to 0
      for ($i=0; $i < 20 ; $i++) {
-       usleep(8000);
+       usleep(4000);
        exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes TV_VOL_DOWN');
      }
      // set volumen to 10
@@ -22,20 +22,20 @@ class TvController extends Controller
        usleep(10000);
        exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes TV_VOL_UP');
      }
-
+     die('1');
     }
     public function off(){
       exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes POWER');
-      return true;
+      die('1');
     }
 
     public function volumeUp(){
       exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes TV_VOL_UP');
-      return true;
+      die('1');
     }
     public function volumeDown(){
       exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes TV_VOL_DOWN');
-      return true;
+      die('1');
     }
 
 }
