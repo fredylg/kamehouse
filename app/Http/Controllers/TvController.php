@@ -11,7 +11,7 @@ class TvController extends Controller
      //turn tv on
      exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes POWER');
      // wait for 8 seconds
-     usleep(5000000);
+     usleep(9000000);
      // set volumen to 0
      for ($i=0; $i < 20 ; $i++) {
        usleep(4000);
