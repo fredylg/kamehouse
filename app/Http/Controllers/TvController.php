@@ -14,7 +14,7 @@ class TvController extends Controller
      usleep(9000000);
      // set volumen to 0
      for ($i=0; $i < 20 ; $i++) {
-       usleep(4000);
+       usleep(2000);
        exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes TV_VOL_DOWN');
      }
      // set volumen to 10
