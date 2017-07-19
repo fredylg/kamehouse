@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use  App\Http\Controllers\LightsController;
 use  App\Http\Controllers\SonosController;
+use  App\Http\Controllers\TvController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,4 +88,9 @@ Route::get('/sonos/getvolumen', function (Request $request ) {
 Route::get('/sonos/getfakestatus', function (Request $request ) {
     $s = new SonosController();
     return $s->getFakeStatus();
+});
+
+Route::get('/tv/on', function (Request $request ) {
+    $s = new TvController();
+    return $s->on();
 });
