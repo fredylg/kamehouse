@@ -14,12 +14,12 @@ class TvController extends Controller
      usleep(9500000);
      // set volumen to 0
      for ($i=0; $i < 20 ; $i++) {
-       usleep(3000);
+       usleep(3500);
        exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes TV_VOL_DOWN');
      }
      // set volumen to 10
      for ($i=0; $i < 10 ; $i++) {
-       usleep(10000);
+       usleep(3500);
        exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes TV_VOL_UP');
      }
      die('1');
