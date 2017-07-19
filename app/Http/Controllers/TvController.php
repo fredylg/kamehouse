@@ -37,5 +37,19 @@ class TvController extends Controller
       exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes TV_VOL_DOWN');
       die('1');
     }
+    public function setVolumen( $val ){
+      if($val > 0){
+        $action ='TV_VOL_UP';
+      }else{
+        $action ='TV_VOL_DOWN';
+      }
+
+      for ( $i=0; $i < $val ; $i++ ) {
+        usleep(300);
+        exec('cd /home/pi/mirror && ./irrp.py -p -g22 -fcodes '.$action );
+      }
+
+      die('1');
+    }
 
 }
