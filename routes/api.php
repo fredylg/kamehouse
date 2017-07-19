@@ -94,3 +94,18 @@ Route::get('/tv/on', function (Request $request ) {
     $s = new TvController();
     return $s->on();
 });
+
+Route::get('/tv/off', function (Request $request ) {
+    $s = new TvController();
+    return $s->off();
+});
+
+Route::get('/tv/volumeup', function (Request $request ) {
+    $s = new TvController();
+    return $s->volumeUp();
+});
+
+Route::get('/tv/volumedown', function (Request $request ) {
+    $s = new TvController();
+    return $s->volumeDown();
+});
