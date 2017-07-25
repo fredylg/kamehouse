@@ -128,3 +128,13 @@ Route::get('/ac/off', function (Request $request ) {
     $s = new ACController();
     return $s->off();
 });
+
+Route::get('/ac/pos5', function (Request $request ) {
+    $s = new ACController();
+    return $s->pos5();
+});
+
+Route::get('/ac/posAuto', function (Request $request ) {
+    $s = new ACController();
+    return $s->posAuto();
+});
