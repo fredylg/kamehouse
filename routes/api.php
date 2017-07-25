@@ -117,3 +117,14 @@ Route::get('/tv/setvolumenup/{val}', function (Request $request , $val) {
     $s = new TvController();
     return $s->setVolumenUp($val);
 });
+//-------------------------------
+
+Route::get('/ac/on', function (Request $request ) {
+    $s = new ACController();
+    return $s->on();
+});
+
+Route::get('/ac/off', function (Request $request ) {
+    $s = new ACController();
+    return $s->off();
+});
