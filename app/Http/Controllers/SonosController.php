@@ -9,7 +9,7 @@ class SonosController extends Controller
     //
     private $properties;
     public function __construct( ){
-        $this->server = 'http://192.168.0.5:5005';
+        $this->server = 'http://192.168.0.15:5005';
         $this->zone = 'DiningRoom';
         $this->volumenRate = '8';
         $this->properties = null ;
