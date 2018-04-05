@@ -138,3 +138,11 @@ Route::get('/ac/posAuto', function (Request $request ) {
     $s = new ACController();
     return $s->posAuto();
 });
+
+Route::get('/test', function (Request $request ) {
+	    die($_SERVER['SERVER_ADDR']);
+});
+
+
+
+
